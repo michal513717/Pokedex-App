@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Techstack:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React, Redux, axios, eslint+prettier
+api: https://pokeapi.co/
 
 ## Available Scripts
 
