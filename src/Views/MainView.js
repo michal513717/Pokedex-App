@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { SET_DETAILS_POKEMON as SET_DETAILS_POKEMON_ACTION } from "../actions";
 import PropTypes from "prop-types";
+import { device } from "../utlis/mediaQueries";
 
 const StyledWrapper = styled.div`
   font-family: sans-serif;
@@ -40,28 +41,46 @@ const StyledInfo = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const StyledImage = styled.img`
   display: block;
-  max-width: 200px;
-  max-height: 200px;
-  min-width: 150px;
-  min-height: 150px;
+
+  max-width: 150px;
+  max-height: 150px;
+  min-width: 100px;
+  min-height: 100px;
+
+  @media ${device.tablet} {
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 150px;
+    min-height: 150px;
+  }
 `;
 
 const StyledHeader = styled.h1`
   display: block;
-  font-size: 1.8rem;
-
+  font-size: 1rem;
+  padding-top: 17px;
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  @media ${device.tablet} {
+    padding-top: 17px;
+    font-size: 2rem;
   }
 `;
 
 const StyledParagraph = styled.p`
   display: block;
-  font-size: 1.6rem;
+  font-size: 1rem;
+
+  @media ${device.tablet} {
+    font-size: 1.6rem;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -72,8 +91,13 @@ const StyledButton = styled.button`
   border: none;
   background: white;
   font-size: 20px;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+
+  @media ${device.tablet} {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 class MainView extends React.Component {
