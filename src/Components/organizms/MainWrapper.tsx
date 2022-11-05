@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../../utlis/mediaQueries";
 import { connect } from "react-redux";
-import { SET_DETAILS_POKEMON as SET_DETAILS_POKEMON_ACTION } from "./../../actions";
+import { SET_DETAILS_POKEMON as SET_DETAILS_POKEMON_ACTION } from "../../actions";
 import Card from "../molecules/Card";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";

@@ -35,7 +35,7 @@ const StyledButton = styled.button`
   width: 50%;
 `;
 
-const Card = ({ name, url, getMoreData }) => {
+const Card = ({ name, url, getMoreData } : { name: string, url: string, getModeData: any}) => { // rewrite
   return (
     <StyledWrapper>
       <StyledImage src={url} />

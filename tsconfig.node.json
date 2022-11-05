@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "composite": true,
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "allowSyntheticDefaultImports": true,
+      "downlevelIteration": true
+    },
+    "include": ["package.json", "models.d.ts"]
+  }

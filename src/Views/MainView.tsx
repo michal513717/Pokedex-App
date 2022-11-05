@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { SET_DETAILS_POKEMON as SET_DETAILS_POKEMON_ACTION } from "../actions";
-import PropTypes from "prop-types";
 import { device } from "../utlis/mediaQueries";
 
 const StyledWrapper = styled.div`
@@ -100,46 +97,42 @@ const StyledButton = styled.button`
   }
 `;
 
-class MainView extends React.Component {
-  render() {
-    const { pokemonDetail } = this.props;
+const MainView: React.FC = ({pokemonDetail}: {pokemonDetail: any}) => {
 
-    return (
-      <>
-        {pokemonDetail.length > 0 ? (
-          <StyledBackgroundInfo>
-            <StyledInfo>
-              <StyledHeader>{pokemonDetail[0].name}</StyledHeader>
-              <StyledImage src={pokemonDetail[0].sprites.front_default} />
-              <StyledParagraph>Height: {pokemonDetail[0].height}</StyledParagraph>
-              <StyledParagraph>Weight: {pokemonDetail[0].weight}</StyledParagraph>
-              <StyledButton onClick={() => this.props.SET_DETAILS_POKEMON()}> X </StyledButton>
-            </StyledInfo>
-          </StyledBackgroundInfo>
-        ) : (
-          <></>
-        )}
-        <StyledWrapper theme={this.props.theme}>{this.props.children}</StyledWrapper>
-      </>
-    );
-  }
+  return (
+    <>
+      {pokemonDetail.length > 0 ? (
+        <StyledBackgroundInfo>
+          <StyledInfo>
+            <StyledHeader>{pokemonDetail[0].name}</StyledHeader>
+            <StyledImage src={pokemonDetail[0].sprites.front_default} />
+            <StyledParagraph>Height: {pokemonDetail[0].height}</StyledParagraph>
+            <StyledParagraph>Weight: {pokemonDetail[0].weight}</StyledParagraph>
+            <StyledButton onClick={() => console.log("idk")}> X </StyledButton>
+          </StyledInfo>
+        </StyledBackgroundInfo>
+      ) : (
+        <></>
+      )}
+    </>
+  )
 }
 
-const mapStateToProps = (state) => ({
-  pokemonDetail: state.pokemonDetail,
-});
+// const mapStateToProps = (state) => ({
+//   pokemonDetail: state.pokemonDetail,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  SET_DETAILS_POKEMON: (close_object) => dispatch(SET_DETAILS_POKEMON_ACTION(close_object)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   SET_DETAILS_POKEMON: (close_object) => dispatch(SET_DETAILS_POKEMON_ACTION(close_object)),
+// });
 
-MainView.propTypes = {
-  SET_DETAILS_POKEMON: PropTypes.func.isRequired,
-  children: PropTypes.element,
-};
+// MainView.propTypes = {
+//   SET_DETAILS_POKEMON: PropTypes.func.isRequired,
+//   children: PropTypes.element,
+// };
 
-MainView.defaultProps = {
-  children: {},
-};
+// MainView.defaultProps = {
+//   children: {},
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default MainView;
