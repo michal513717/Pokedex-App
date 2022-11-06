@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { device } from "../utlis/mediaQueries";
+import MainWrapper from "./../Components/organizms/MainWrapper";
 
 const StyledWrapper = styled.div`
   font-family: sans-serif;
@@ -97,11 +98,16 @@ const StyledButton = styled.button`
   }
 `;
 
-const MainView: React.FC = ({pokemonDetail}: {pokemonDetail: any}) => {
+const MainView: React.FC = () => {
 
-  return (
-    <>
-      {pokemonDetail.length > 0 ? (
+  return(
+    <StyledWrapper>
+      <MainWrapper></MainWrapper>
+    </StyledWrapper>
+  )
+
+    // <StyledWrapper>
+      /* {pokemonDetail.length > 0 ? (
         <StyledBackgroundInfo>
           <StyledInfo>
             <StyledHeader>{pokemonDetail[0].name}</StyledHeader>
@@ -113,9 +119,9 @@ const MainView: React.FC = ({pokemonDetail}: {pokemonDetail: any}) => {
         </StyledBackgroundInfo>
       ) : (
         <></>
-      )}
-    </>
-  )
+      )} */
+    /* <StyledWrapper/> */
+  
 }
 
 // const mapStateToProps = (state) => ({

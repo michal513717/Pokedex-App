@@ -20,6 +20,7 @@ module.exports = {
         "prettier"
     ],
     "rules": {
+        "no-unused-vars": ["warn"],
         "prettier/prettier": "warn",
         'react/prop-types': [0]
     }

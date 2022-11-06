@@ -1,12 +1,7 @@
 import React from "react";
-import axios from "axios";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { SET_POKEMONS as SET_POKEMONS_ACTION } from "./actions";
-import { SET_IMAGES as SET_IMAGES_ACTION } from "./actions";
 import MainView from "./Views/MainView";
 import MainWrapper from "./Components/organizms/MainWrapper";
-import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
   display: block;
@@ -20,52 +15,29 @@ const StyledButton = styled.button`
 class Root extends React.Component {
   state = { Loading: false };
 
-  // getImages = (pokemonNames) => {
-  //   pokemonNames.forEach(async (pokemonName) => {
-  //     try {
-  //       let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.name}`);
-  //       if (response.status === 200) {
-  //         await this.props.SET_IMAGES([
-  //           { image: response.data.sprites.front_default, pokemonName: pokemonName.name },
-  //         ]);
-  //       }
-  //     } catch (error) {
-  //       console.log("Err", error);
-  //     }
-  //   });
-  // };
-
-  // fetchData = async (url = "https://pokeapi.co/api/v2/pokemon?limit=20") => {
-  //   this.setState({ Loading: true });
-
-  //   try {
-  //     const response = await axios.get(url);
-  //     if (response.status === 200) {
-  //       await this.props.SET_POKEMONS(response.data);
-  //       await this.getImages(response.data.results);
-  //     }
-  //   } catch (error) {
-  //     console.log("Err", error);
-  //   }
-
-  //   this.setState({ Loading: false });
-  // };
-
   render() {
     const Loading = true;
+    //       let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.name}`);
+    // fetchData = async (url = "https://pokeapi.co/api/v2/pokemon?limit=20") => {
+    //         await this.props.SET_IMAGES([
+    //           { image: response.data.sprites.front_default, pokemonName: pokemonName.name },
+    //         ]);
+    //       }
 
 
     return (
-      <MainView>
-        {this.props.pokemons.length > 1 ? (
+      <>
+      </>
+      // <MainView>
+        /* {this.props.pokemons.length > 1 ? (
           <MainWrapper
             Loading={Loading}
             getMorePokemons={() => this.fetchData(this.props.nextTwenty)}
           ></MainWrapper>
         ) : (
           <StyledButton onClick={() => this.fetchData()}>Let&#39;s Start !</StyledButton>
-        )}
-      </MainView>
+        )} */
+      // </MainView>
     );
   }
 }

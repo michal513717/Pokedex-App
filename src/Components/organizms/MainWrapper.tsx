@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { device } from "../../utlis/mediaQueries";
-import { connect } from "react-redux";
-import { SET_DETAILS_POKEMON as SET_DETAILS_POKEMON_ACTION } from "../../actions";
 import Card from "../molecules/Card";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import PropTypes from "prop-types";
+import { useAxios } from "../../hooks/useAxios";
+import { useOpenDialog } from "../../hooks/useOpenDialogs";
+
 
 const StyledWrapper = styled.div`
   height: 80vh;
@@ -69,70 +69,98 @@ const StyledButton = styled.button`
   bottom: 0;
 `;
 
-class MainWrapper extends React.Component {
-  getMoreData = async (pokemonName) => {
-    try {
-      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-      if (response.status === 200) {
-        await this.props.SET_DETAILS_POKEMON(response.data);
-      }
-    } catch (error) {
-      console.log("Err", error);
+const MainWrapper: React.FC = () => {
+  const [url, setUrl] = useState<string>('https://pokeapi.co/api/v2/pokemon')
+  const [pokemonList, setPokemonList] = useState([]);
+  const { setIsErrorFetchDialogOpen } = useOpenDialog();
+  const { fetchData } = useAxios();
+  
+
+      //       let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.name}`);
+    // fetchData = async (url = "https://pokeapi.co/api/v2/pokemon?limit=20") => {
+  // const {} = useAxios();
+  // const getMoreData = async (pokemonName: string) => {
+  //   try {
+  //     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+  //     if (response.status === 200) {
+  //       // await this.props.SET_DETAILS_POKEMON(response.data);
+  //     }
+  //   } catch (error) {
+  //     console.log("Err", error);
+  //   }
+  // };
+
+  useEffect(()=>{
+    fetchDataCallback();
+  },[])
+
+  const fetchDataCallback = useCallback( async ()=>{
+    const data = await fetchData(url, "GET", '')
+
+    if(data[1].isError === true){
+      setIsErrorFetchDialogOpen(true);
     }
-  };
+  
+    if(data[1].isError === false){
+      setPokemonList(data[0].results);
+    }
 
-  render() {
-    return (
-      <>
-        <StyledWrapper>
-          {this.props.Loading ? (
-            <Box style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <CircularProgress color="inherit" />
-            </Box>
-          ) : (
-            this.props.pokemonsImage.map((pokemon) => {
-              return (
-                <Card
-                  key={pokemon.pokemonName}
-                  getMoreData={(pokemonName) => this.getMoreData(pokemonName)}
-                  name={pokemon.pokemonName}
-                  url={pokemon.image}
-                ></Card>
-              );
-            })
-          )}
-        </StyledWrapper>
-        <StyledButton onClick={() => this.props.getMorePokemons()}>
-          Load more data ....
-        </StyledButton>
-      </>
-    );
-  }
+    console.log(data[0].results)
+  },[url])
+
+  return (
+    <>
+      <StyledWrapper>
+
+      </StyledWrapper>
+      {/* <StyledWrapper>
+        {Loading ? (
+          <Box style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <CircularProgress color="inherit" />
+          </Box>
+        ) : (
+          this.props.pokemonsImage.map((pokemon) => {
+            return (
+              <Card
+                key={pokemon.pokemonName}
+                getMoreData={(pokemonName) => this.getMoreData(pokemonName)}
+                name={pokemon.pokemonName}
+                url={pokemon.image}
+              />
+            );
+          })
+        )}
+      </StyledWrapper>
+      <StyledButton onClick={() => this.props.getMorePokemons()}>
+        Load more data ....
+      </StyledButton> */}
+    </>
+  );
+
 }
+// const mapDispatchToProps = (dispatch) => ({
+//   SET_DETAILS_POKEMON: (pokemnoDetails) => dispatch(SET_DETAILS_POKEMON_ACTION(pokemnoDetails)),
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  SET_DETAILS_POKEMON: (pokemnoDetails) => dispatch(SET_DETAILS_POKEMON_ACTION(pokemnoDetails)),
-});
+// const mapStateToProps = (state) => ({
+//   pokemonsImage: state.pokemonsImage,
+// });
 
-const mapStateToProps = (state) => ({
-  pokemonsImage: state.pokemonsImage,
-});
+// MainWrapper.propTypes = {
+//   pokemonsImage: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       image: PropTypes.string.isRequired,
+//       pokemonName: PropTypes.string.isRequired,
+//     }),
+//   ),
 
-MainWrapper.propTypes = {
-  pokemonsImage: PropTypes.arrayOf(
-    PropTypes.shape({
-      image: PropTypes.string.isRequired,
-      pokemonName: PropTypes.string.isRequired,
-    }),
-  ),
+//   SET_DETAILS_POKEMON: PropTypes.func.isRequired,
+//   getMorePokemons: PropTypes.func.isRequired,
+//   Loading: PropTypes.bool.isRequired,
+// };
 
-  SET_DETAILS_POKEMON: PropTypes.func.isRequired,
-  getMorePokemons: PropTypes.func.isRequired,
-  Loading: PropTypes.bool.isRequired,
-};
+// MainWrapper.defaultProp = {
+//   pokemonsImage: [],
+// };
 
-MainWrapper.defaultProp = {
-  pokemonsImage: [],
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainWrapper);
+export default MainWrapper;

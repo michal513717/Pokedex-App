@@ -1,4 +1,9 @@
 
 export interface IStore {
-    isLogged: boolean
+    pokemonList: object[],
+
+    isErrorFetchDialogOpen:boolean;
+
+    setIsErrorFetchDialogOpen: (statement:boolean) => void;
+    setPokemonList: (data:object[]) => void;
 }

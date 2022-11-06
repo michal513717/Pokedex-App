@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const StyledWrapper = styled.div`
   min-width: 250px;
@@ -35,20 +34,23 @@ const StyledButton = styled.button`
   width: 50%;
 `;
 
-const Card = ({ name, url, getMoreData } : { name: string, url: string, getModeData: any}) => { // rewrite
+// const Card:React.FC = ({ name, url, getMoreData } : { name: string, url: string, getMoreData: any}) => { // rewrite
+const Card:React.FC = () => {
   return (
-    <StyledWrapper>
-      <StyledImage src={url} />
-      <StyledText>{name}</StyledText>
-      <StyledButton onClick={() => getMoreData(name)}>See More info ! </StyledButton>
-    </StyledWrapper>
+    <>
+    </>
+    // <StyledWrapper>
+    //   <StyledImage src={url} />
+    //   <StyledText>{name}</StyledText>
+    //   <StyledButton onClick={() => getMoreData(name)}>See More info ! </StyledButton>
+    // </StyledWrapper>
   );
 };
 
-Card.propTypes = {
-  name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  getMoreData: PropTypes.func.isRequired,
-};
+// Card.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   url: PropTypes.string.isRequired,
+//   getMoreData: PropTypes.func.isRequired,
+// };
 
 export default Card;
