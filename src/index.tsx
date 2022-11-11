@@ -11,10 +11,10 @@ const config: ThemeConfig = {
 const theme = extendTheme({ config });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ChakraProvider>
       <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
         <MainView />
     </ChakraProvider>
-  </React.StrictMode>
+  // </React.StrictMode> }
 )

@@ -1,5 +1,6 @@
 export type GetImagesCallbackType = <T extends {name:string}>(pokemonList: T[]) => void;
 export type DefaultCallbackType = () => void;
+export type GetFromUrlCallbackType = (url:string) => void;
 
 export interface IDataPokemons {
     name: string;
@@ -9,10 +10,12 @@ export interface IDataPokemons {
 }
 
 export interface IStore {
-    pokemonList: object[],
+    pokemonList: IDataPokemons[];
+    nextPokemonsRequest: string;
 
     isErrorFetchDialogOpen:boolean;
 
     setIsErrorFetchDialogOpen: (statement:boolean) => void;
-    // setPokemonList: (data:object[]) => void;
+    setPokemonList: (data:IDataPokemons[]) => void;
+    setNextPokemonsRequest: (url:string) => void;
 }

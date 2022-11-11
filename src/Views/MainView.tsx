@@ -1,5 +1,10 @@
-import React from "react";
+import { Button } from "@chakra-ui/react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
+import { DefaultCallbackType } from "../../models";
+import { useAxios } from "../hooks/useAxios";
+import { useGetPokemons } from "../hooks/useGetPokemons";
+import { useStore } from "../store";
 import { device } from "../utlis/mediaQueries";
 import MainWrapper from "./../Components/organizms/MainWrapper";
 
@@ -89,20 +94,21 @@ const StyledButton = styled.button`
   border: none;
   background: white;
   font-size: 20px;
-  width: 30px;
-  height: 30px;
-
-  @media ${device.tablet} {
-    width: 40px;
-    height: 40px;
-  }
 `;
 
 const MainView: React.FC = () => {
+  const { fetchDataCallback } = useGetPokemons();
+  const { nextPokemonsRequest } = useStore();
+
+  const getMoreDataCallback = useCallback<DefaultCallbackType>(()=>{
+    
+    fetchDataCallback(nextPokemonsRequest);
+  },[nextPokemonsRequest])
 
   return(
     <StyledWrapper>
-      <MainWrapper></MainWrapper>
+      <MainWrapper/>
+      <Button onClick={getMoreDataCallback}> Load more... </Button>
     </StyledWrapper>
   )
 
