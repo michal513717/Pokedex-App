@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { device } from "../../utlis/mediaQueries";
 import Card from "../molecules/Card";
 import axios from "axios";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+// import CircularProgress from "@mui/material/CircularProgress";
 import { useAxios } from "../../hooks/useAxios";
 import { useOpenDialog } from "../../hooks/useOpenDialogs";
 

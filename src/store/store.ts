@@ -1,5 +1,5 @@
-import create from "zustand/react";
-import type { IStore } from "models";
+import create from "zustand";
+import type { IStore } from './../../models';
 
 export const useStore = create<IStore>((set) => ({
     pokemonList: [],
@@ -9,10 +9,10 @@ export const useStore = create<IStore>((set) => ({
     // isPokemonsDetailsDialogOpen: false,
 
     setIsErrorFetchDialogOpen: async (statement) => {
-        set((state) => ({...state, isErrorFetchDialogOpen: statement}))
+        set((state) => ({ ...state, isErrorFetchDialogOpen: statement }))
     },
 
     setPokemonList: async (data) => {
-        set((state) => ({ ...state, pokemonList:data}))
+        set((state) => ({ ...state, pokemonList: data }))
     }
 }))

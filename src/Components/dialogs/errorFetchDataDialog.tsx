@@ -1,7 +1,9 @@
-import { ModalOverlay, Modal, ModalContent,ModalBody, ModalFooter, ModalHeader, ModalCloseButton, Button } from "@chakra-ui/react";
+import { ModalOverlay, Modal, ModalContent,ModalBody, ModalFooter, ModalHeader, ModalCloseButton, Button, useDisclosure } from "@chakra-ui/react";
 import React from "react"
 
 const ErrorFetchDataDialog:React.FC = () => {
+      const { isOpen, onOpen, onClose } = useDisclosure()
+
 
     return(
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -10,7 +12,7 @@ const ErrorFetchDataDialog:React.FC = () => {
             <ModalHeader>Modal Title</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Lorem count={2} />
+
             </ModalBody>
   
             <ModalFooter>
