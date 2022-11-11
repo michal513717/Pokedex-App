@@ -12,7 +12,7 @@ export const useStore = create<IStore>((set) => ({
         set((state) => ({ ...state, isErrorFetchDialogOpen: statement }))
     },
 
-    setPokemonList: async (data) => {
-        set((state) => ({ ...state, pokemonList: data }))
-    }
+    // setPokemonList: async (data) => {
+    //     set((state) => ({ ...state, pokemonList: data }))
+    // }
 }))
