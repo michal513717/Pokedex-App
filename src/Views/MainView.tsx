@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Switch, useColorMode, useColorModeValue, Box, Flex } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { DefaultCallbackType } from "../../models";
@@ -8,35 +8,32 @@ import { device } from "../utlis/mediaQueries";
 import MainWrapper from "./../Components/organizms/MainWrapper";
 import Dialogs from "../Components/dialogs";
 
-const StyledWrapper = styled.div`
-  font-family: sans-serif;
-  width: 100vw;
-  height: 100vh;
-  background-color: hsl(49, 100%, 58%);
-  top: 0;
-  left: 0;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-`;
-
 const MainView: React.FC = () => {
   const { fetchDataCallback } = useGetPokemons();
+  const { toggleColorMode } = useColorMode();
   const { nextPokemonsRequest } = useStore();
-
+  const bg = useColorModeValue("hsl(49, 100%, 58%)", "black");
+  
   const getMoreDataCallback = useCallback<DefaultCallbackType>(()=>{
     
     fetchDataCallback(nextPokemonsRequest);
   },[nextPokemonsRequest])
 
   return(
-    <StyledWrapper>
+    <Flex
+      fontFamily={"sans-serif"}
+      width={"100vw"}
+      height={"100vh"}
+      background={bg}
+      direction={"column"}
+      justify={"space-around"}
+      align={"center"}
+    >
       <MainWrapper/>
       <Button onClick={getMoreDataCallback}> Load more... </Button>
+      <Switch onChange={toggleColorMode} position={"absolute"} right={0} top={0}/>
       <Dialogs/>
-    </StyledWrapper>
+    </Flex>
   )
 }
 
