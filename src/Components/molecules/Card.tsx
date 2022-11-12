@@ -1,6 +1,9 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { DefaultCallbackType } from "../../../models";
+import { useOpenDialog } from "../../hooks/useOpenDialogs";
+import { useStore } from "../../store";
+import {useAxios} from './../../hooks/useAxios';
 
 const StyledWrapper = styled.div`
   min-width: 250px;
@@ -38,18 +41,28 @@ const StyledButton = styled.button`
 type GetMoreInfoCallbackType = <T>(name:T) => void;
 
 const Card = ({name, imageUrl}:{name:string, imageUrl:string}) => {
-  
-  const getMoreInfoCallback = useCallback<GetMoreInfoCallbackType>((name)=>{
-    console.log(name)
-  },[])
+  const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  const { setPokemonsDetailsDialogOpen } = useOpenDialog();
+  const { fetchData } = useAxios();
+  const { setPokemonDetails } = useStore();
 
+  const getMoreInfoCallback = useCallback<GetMoreInfoCallbackType>( async (name)=>{
+    
+    const data = await fetchData(baseUrl+name, "GET", "");
+    
+    if(data[1].isError === false){
+      
+      setPokemonDetails(data[0]);
+      setPokemonsDetailsDialogOpen(true);
+    }
+  },[])
 
   return (
     <>
       <StyledWrapper>
         <StyledImage src={imageUrl} />
         <StyledText>{name}</StyledText>
-        <StyledButton onClick={() => console.log(name)}>See More info ! </StyledButton>
+        <StyledButton onClick={()=>getMoreInfoCallback(name)}>See More info ! </StyledButton>
       </StyledWrapper>
     </>
   );

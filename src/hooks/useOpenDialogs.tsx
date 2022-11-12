@@ -5,13 +5,20 @@ export function useOpenDialog() {
         (state) => state.isErrorFetchDialogOpen
     );
 
+    const isPokemonsDetailsDialogOpen = useStore(
+        (state) => state.isPokemonsDetailsDialogOpen
+    );
+
     const {
         setIsErrorFetchDialogOpen,
+        setPokemonsDetailsDialogOpen
     } = useStore();
 
 
     return {
         isErrorFetchDialogOpen,
-        setIsErrorFetchDialogOpen
+        isPokemonsDetailsDialogOpen,
+        setIsErrorFetchDialogOpen,
+        setPokemonsDetailsDialogOpen
     };
 }

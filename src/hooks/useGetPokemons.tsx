@@ -1,4 +1,4 @@
-import react, { useCallback, useState } from 'react';
+import react, { useCallback } from 'react';
 import { GetImagesCallbackType, IDataPokemons, GetFromUrlCallbackType } from '../../models';
 import { useStore } from '../store';
 import { useAxios } from './useAxios';

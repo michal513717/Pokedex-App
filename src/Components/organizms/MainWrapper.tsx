@@ -1,12 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { device } from "../../utlis/mediaQueries";
 import Card from "../molecules/Card";
 // import CircularProgress from "@mui/material/CircularProgress";
-import { useAxios } from "../../hooks/useAxios";
-import { useOpenDialog } from "../../hooks/useOpenDialogs";
 import { DefaultCallbackType, GetImagesCallbackType, IDataPokemons } from "../../../models";
-import { Box } from "@chakra-ui/react";
 import { useStore } from "../../store";
 import { useGetPokemons } from "../../hooks/useGetPokemons";
 
@@ -41,20 +38,6 @@ const StyledWrapper = styled.div`
     width: 1700px;
   }
 `;
-
-const StyledButton = styled.button`
-  display: block;
-  backgorund: white;
-  width: 200px;
-  heigth: 50px;
-  border-radius: 20px;
-  font-size: 2rem;
-  margin: 0 auto;
-  position: relative;
-  bottom: 0;
-`;
-
-
 
 const MainWrapper = () => {
   const [url, setUrl] = useState<string>('https://pokeapi.co/api/v2/pokemon');
